@@ -4,19 +4,36 @@
 // but you don't so you're going to write it from scratch:
 var stringifyJSON = function(obj) {
   
-var arr1 = [];
-  var arr2 = [];
+
+  
   
 
-  if (typeof obj === "function" || undefined){
-	return undefined;
-  }	else if (obj === null) {
+   // if (typeof obj === "function" || 'undefined'){
+	//return "undefined";
+	if (obj === null) {
 	return "null";
-  }	else if (obj === String) {
-	return str.quote(obj);
-  }	else {
-	return obj.toString();
-}
-	return obj;
+  }	else if (typeof obj === 'string') {
+		return ('"' + obj.toString() + '"');
+  } else if (typeof obj === "number") {
+		return obj.toString();
+  } else if (typeof obj === "boolean") {
+		return obj.toString();
+  } else if (Array.isArray(obj)){
+	var arr1 = [];
+	for (var i = 0; i < obj.length; i++) {
+		arr1.push(stringifyJSON(obj[i]));
+	}
+		return "[" + arr1.toString() + "]";
 
+} else if (typeof obj === "object"){
+	var arr2 = [];
+	for (var key in obj){
+		if (typeof obj[key] !== 'function' && key !== undefined) {
+			var str = "";
+			str += (stringifyJSON(key)) + ":" + stringifyJSON(obj[key]);
+			arr2.push(str);
+		}
+			return "{" + arr2.toString() +"}";
+	}
+}
 };

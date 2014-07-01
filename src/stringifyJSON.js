@@ -22,12 +22,12 @@ var stringifyJSON = function(obj) {
 } else if (typeof obj === "object"){
 	var arr2 = [];
 	for (var key in obj){
-		if (typeof obj[key] !== 'function' && key !== undefined) {
+		if (typeof obj[key] !== 'function' && key !== 'undefined') {
 			var str = "";
 			str += (stringifyJSON(key)) + ":" + stringifyJSON(obj[key]);
 			arr2.push(str);
 		}
-			return "{" + arr2.toString() +"}";
 	}
+		return "{" + arr2.toString() +"}";
 }
 };

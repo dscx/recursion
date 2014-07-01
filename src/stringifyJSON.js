@@ -3,5 +3,20 @@
 
 // but you don't so you're going to write it from scratch:
 var stringifyJSON = function(obj) {
-  // your code goes here
+  
+var arr1 = [];
+  var arr2 = [];
+  
+
+  if (typeof obj === "function" || undefined){
+	return undefined;
+  }	else if (obj === null) {
+	return "null";
+  }	else if (obj === String) {
+	return str.quote(obj);
+  }	else {
+	return obj.toString();
+}
+	return obj;
+
 };
